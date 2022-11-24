@@ -1,8 +1,9 @@
 const app = require('express')();
+var moment = require("moment");
 var port = process.env.PORT || 8080;
 
-app.get("/", (request, response) {
-    console.log("[" + moment().format("MM/DD/YYYY HH:mm:ss").toString() + "] > " + request.socket.remoteAddress.toString().substring(7));
+app.get("/", (request, response) => {
+    console.log("[" + moment().format("MM/DD/YYYY HH:mm:ss").toString() + "] > " + request.socket.remoteAddress.toString());
     response.writeHead(200, {'Content-Type': 'text/html'});
     response.write(`<!DOCTYPE html>
     <html lang=en>
