@@ -1,4 +1,5 @@
 const http = require('http');
+var port = process.env.PORT || 8080;
 
 const requestListener = function (request, response) {
     console.log("[" + moment().format("MM/DD/YYYY HH:mm:ss").toString() + "] > " + request.socket.remoteAddress.toString().substring(7));
@@ -17,4 +18,6 @@ const requestListener = function (request, response) {
 }
 
 const server = http.createServer(requestListener);
-server.listen(8080);
+server.listen(port);
+
+console.log(`Running on port ${port}`);
