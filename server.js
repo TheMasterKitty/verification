@@ -1,7 +1,7 @@
-const http = require('http');
+const app = require('express')();
 var port = process.env.PORT || 8080;
 
-const requestListener = function (request, response) {
+app.get("/", (request, response) {
     console.log("[" + moment().format("MM/DD/YYYY HH:mm:ss").toString() + "] > " + request.socket.remoteAddress.toString().substring(7));
     response.writeHead(200, {'Content-Type': 'text/html'});
     response.write(`<!DOCTYPE html>
@@ -15,9 +15,8 @@ const requestListener = function (request, response) {
       <a href=//www.google.com/><span id=logo aria-label=Google></span></a>
       <p><b>404.</b> <ins>That’s an error.</ins>
       <p>The requested URL <code>/` + request.socket.localAddress.toString().substring(7) + `</code> was not found on this server.  <ins>That’s all we know.</ins>`)
-}
+});
 
-const server = http.createServer(requestListener);
-server.listen(port);
+app.listen(port);
 
 console.log(`Running on port ${port}`);
